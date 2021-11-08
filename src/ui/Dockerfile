@@ -1,11 +1,12 @@
 FROM ubuntu:16.04
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y ruby-full ruby-dev build-essential \
+    && apt-get install -y ruby-full ruby-dev build-essential \
     && gem install bundler --no-ri --no-rdoc
 
 ENV APP_HOME /app
-WORKDIR $APP_HOME
+RUN mkdir $APP_HOME
 
+WORKDIR $APP_HOME
 COPY Gemfile* $APP_HOME/
 RUN bundle install
 COPY . $APP_HOME
