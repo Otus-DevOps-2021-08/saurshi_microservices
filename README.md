@@ -11,7 +11,7 @@ saurshi microservices repository
 * Запуск и работа приложения на основе Docker-образов, docker run
 
 #### Как запустить проект:
-* docker volume create reddit_db
+* docker kill $(docker ps -q)
 
 * docker run -d --network=reddit --network-alias=post_db \
 	--network-alias=comment_db -v reddit_db:/data/db mongo:latest
