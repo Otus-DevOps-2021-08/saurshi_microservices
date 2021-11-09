@@ -3,7 +3,7 @@ saurshi microservices repository
 
 ## Практика
 ### Задание №13 Docker-3
---Docker-образы. Микросервисы--
+***Docker-образы. Микросервисы***
 
 #### В процессе сделано:
 - Описал и собрал Docker-образы для сервисного приложения
@@ -21,5 +21,5 @@ saurshi microservices repository
 - docker run -d --network=reddit  -p 9292:9292 saurshi/ui:2.0
 
 #### Как проверить работоспособность:
-- Перейти по ссылке http://<docker-host-ip>:9292
+- Перейти по ссылке http://docker-host-ip:9292
 - Написать пост.
