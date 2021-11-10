@@ -2,20 +2,24 @@
 saurshi microservices repository
 
 ## Практика
-### Задание №12 Docker-2
-**Технология контейнеризации. Введение в Docker**
+### Задание №13 Docker-3
+***Docker-образы. Микросервисы***
 
 #### В процессе сделано:
-* Создание docker host
-* Создание своего образа
-* Работа с Docker Hub
+- Описал и собрал Docker-образы для сервисного приложения
+- Научился оптимизировать работу с Docker-образами
+- Запуск и работа приложения на основе Docker-образов, docker run
 
 #### Как запустить проект:
-* docker build -t reddit:latest .
-* docker run --name reddit -d --network=host reddit:latest
-* docker tag reddit:latest saurshi/otus-reddit:1.0
-* docker push saurshi/otus-reddit:1.0
-* docker run --name reddit -d -p 9292:9292 saurshi/otus-reddit:1.0
+- docker build -t saurshi/post:1.0 ./post-py
+- docker build -t saurshi/comment:1.0 ./comment
+- docker build -t saurshi/ui:1.0 ./ui
+- docker network create reddit
+- docker run -d --network=reddit --network-alias=post_db --network-alias=comment_db -v reddit_db:/data/db mongo:latest
+- docker run -d --network=reddit  --network-alias=post saurshi/post:1.0
+- docker run -d --network=reddit  --network-alias=comment saurshi/comment:1.0
+- docker run -d --network=reddit  -p 9292:9292 saurshi/ui:2.0
 
 #### Как проверить работоспособность:
-* Перейти по ссылке http://<ip_adress>:9292
+- Перейти по ссылке http://docker-host-ip:9292
+- Написать пост.
