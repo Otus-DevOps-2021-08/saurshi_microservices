@@ -2,23 +2,23 @@
 saurshi microservices repository
 
 ## Практика
-### Задание №13 Docker-3
-***Docker-образы. Микросервисы***
+### Задание №4 Docker-4
+***Docker: сети, docker-compose***
 
 #### В процессе сделано:
-- Описал и собрал Docker-образы для сервисного приложения
-- Научился оптимизировать работу с Docker-образами
-- Запуск и работа приложения на основе Docker-образов, docker run
+- Разобрался с работой сети Docker
+- Собрал образы приложения reddit с помощью docker-compose
+- Запустл приложение reddit с помощью docker-compose
+- Параметризовал с помощью переменных окружений:
+	* логин
+	* порт публикации сервиса ui
+	* версии сервисов
+- Разобрался с построением базового имени:
+	* берется из имени рабочнго каталога
+	* но можно задать с ключом -p перед up|ps|stop|down
 
 #### Как запустить проект:
-- docker build -t saurshi/post:1.0 ./post-py
-- docker build -t saurshi/comment:1.0 ./comment
-- docker build -t saurshi/ui:1.0 ./ui
-- docker network create reddit
-- docker run -d --network=reddit --network-alias=post_db --network-alias=comment_db -v reddit_db:/data/db mongo:latest
-- docker run -d --network=reddit  --network-alias=post saurshi/post:1.0
-- docker run -d --network=reddit  --network-alias=comment saurshi/comment:1.0
-- docker run -d --network=reddit  -p 9292:9292 saurshi/ui:2.0
+- docker-compose -p microservices up -d
 
 #### Как проверить работоспособность:
 - Перейти по ссылке http://docker-host-ip:9292
