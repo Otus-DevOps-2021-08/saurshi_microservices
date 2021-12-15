@@ -1,14 +1,16 @@
-FROM ruby:2.2
-RUN apt-get update -qq \
-    && apt-get install --no-install-recommends -y build-essential \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+FROM ruby:2.7-alpine as ruby-base
 
 ENV APP_HOME /app
-RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 COPY Gemfile* $APP_HOME/
-RUN bundle install
+RUN apk add --no-cache --update ruby-dev build-base \
+    && gem install bundler \
+    && bundle update --bundler \
+    && bundle install \
+    && apk del ruby-dev build-base \
+    && rm -rf /var/cache/apk/*
+
 COPY . $APP_HOME
 
 ENV COMMENT_DATABASE_HOST comment_db
