@@ -1,26 +1,30 @@
----
 version: '3.3'
 services:
   post_db:
-    image: mongo:3.2
+    image: mongo:${post_db_tag}
     volumes:
       - post_db:/data/db
     networks:
-      - reddit
+      - back_net
   ui:
-    image: ${USERNAME}/ui
+    #build: ./ui
+    image: ${USERNAME}/ui:${ui_tag}
     ports:
-      - ${UI_PORTS}:${UI_PORTS}/tcp
+      - ${ui_host_port}:${ui_docker_port}
     networks:
-      - reddit
+      - front_net
   post:
-    image: ${USERNAME}/post
+    #build: ./post-py
+    image: ${USERNAME}/post:${post_tag}
     networks:
-      - reddit
+      - front_net
+      - back_net
   comment:
-    image: ${USERNAME}/comment
+    #build: ./comment
+    image: ${USERNAME}/comment:${comment_tag}
     networks:
-      - reddit
+      - front_net
+      - back_net
 
   prometheus:
     image: ${USERNAME}/prometheus
@@ -28,12 +32,13 @@ services:
       - '9090:9090'
     volumes:
       - prometheus_data:/prometheus
-    command:
+    command: # Передаем доп параметры в командной строке
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention=1d'
+      - '--storage.tsdb.retention=1d' # Задаем время хранения метрик в 1 день
     networks:
-      - reddit
+      - front_net
+      - back_net
 
   node-exporter:
     image: prom/node-exporter:v0.15.2
@@ -47,11 +52,19 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
     networks:
-      - reddit
-
-networks:
-  reddit:
+      - front_net
+      - back_net
 
 volumes:
   post_db:
   prometheus_data:
+
+networks:
+  back_net:
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24
+  front_net:
+    ipam:
+      config:
+        - subnet: 10.0.1.0/24
