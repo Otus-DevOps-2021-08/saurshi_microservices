@@ -20,7 +20,7 @@ spec:
         component: comment
     spec:
       containers:
-      - image: saurshi/comment:logging
+      - image: saurshi/comment:latest
         name: comment
         env:
         - name: COMMENT_DATABASE_HOST

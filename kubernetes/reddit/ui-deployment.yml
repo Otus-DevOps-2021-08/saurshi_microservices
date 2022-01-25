@@ -20,7 +20,7 @@ spec:
         component: ui
     spec:
       containers:
-      - image: saurshi/ui:logging
+      - image: saurshi/ui:latest
         name: ui
         env:
         - name: ENV
