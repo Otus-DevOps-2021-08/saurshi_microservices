@@ -1,0 +1,16 @@
+#
+В процессе сделано:
+
+    Ingress Controller
+    Ingress
+    Secret
+    TLS
+    LoadBalancer Service
+    Network Policies
+    PersistentVolumes
+    PersistentVolumeClaims
+
+#
+kubectl apply -f kubernetes/reddit/dev-namespace.yml
+kubectl apply -n dev -f kubernetes/reddit/
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.34.1/deploy/static/provider/cloud/deploy.yaml
