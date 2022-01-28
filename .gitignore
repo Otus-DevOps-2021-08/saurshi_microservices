@@ -8,3 +8,5 @@
 *.save
 *.env
 *.pyc
+*.crt
+*.key
