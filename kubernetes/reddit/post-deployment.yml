@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: post-deployment 
+  name: post-deployment
   labels:
     app: reddit
     component: post
