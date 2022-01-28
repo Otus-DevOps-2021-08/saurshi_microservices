@@ -1,4 +1,7 @@
----
+--
+
+# name: mongo-gce-pd-storage
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,6 +10,7 @@ metadata:
     app: reddit
     component: mongo
     comment-db: "true"
+    post-db: "true"
 spec:
   replicas: 1
   selector:
