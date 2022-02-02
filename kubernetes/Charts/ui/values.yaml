@@ -7,3 +7,10 @@ image:
   repository: saurshi/ui
   tag: latest
 
+ingress:
+  class: nginx
+
+postHost:
+postPort:
+commentHost:
+commentPort:
