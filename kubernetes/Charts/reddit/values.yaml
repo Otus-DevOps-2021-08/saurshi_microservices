@@ -1,0 +1,20 @@
+omment:
+  image:
+    repository: saurshi/comment
+    tag: latest
+  service:
+    externalPort: 9292
+
+post:
+  image:
+    repository: saurshi/post
+    tag: latest
+  service:
+    externalPort: 5000
+
+ui:
+  image:
+    repository: saurshi/ui
+    tag: latest
+  service:
+    externalPort: 9292

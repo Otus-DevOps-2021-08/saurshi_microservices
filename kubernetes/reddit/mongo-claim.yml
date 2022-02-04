@@ -5,10 +5,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: mongo-pvc
 spec:
-  storageClassName: ""
+  storageClassName: "yc-network-hdd"
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 4Gi
-  volumeName: mongo-pv
+      storage: 2Gi
+  volumeName:  mongo-ya-pd-storage
